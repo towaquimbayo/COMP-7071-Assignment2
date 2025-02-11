@@ -1,1 +1,11 @@
-/.vs
+.DS_Store
+
+# dotnet core
+bin/
+obj/
+project.lock.json
+NuGetScratch/
+
+# IDE
+.idea/
+.vs/
