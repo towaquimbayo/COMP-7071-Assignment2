@@ -9,3 +9,4 @@ NuGetScratch/
 # IDE
 .idea/
 .vs/
+*.cache
