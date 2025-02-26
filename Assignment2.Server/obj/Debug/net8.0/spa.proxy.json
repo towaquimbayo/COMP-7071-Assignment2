@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:65213",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\elber\\Documents\\GitHub\\COMP-7071-Assignment2\\Assignment2.Server\\..\\assignment2.client",
+"WorkingDirectory": "C:\\Users\\Oggle\\OneDrive\\Documents\\7071\\Project\\COMP-7071-Assignment2\\Assignment2.Server\\..\\assignment2.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }
