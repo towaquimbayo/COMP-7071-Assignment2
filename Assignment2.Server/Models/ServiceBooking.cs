@@ -2,12 +2,16 @@
 {
     public class ServiceBooking
     {
-        private Guid Id { get; set; }
-        private Guid ClientId { get; set; }
-        private Client Client { get; set; }
-        private Guid ServiceId { get; set; }
-        private Service Service { get; set; }
-        private DateTime ScheduledDate { get; set; }
-        private List<Employee> AssignedEmployees { get; set; }
+        public Guid Id { get; set; }
+        public Guid ClientId { get; set; }
+        public Guid ServiceId { get; set; }
+
+        public Client Client { get; set; }
+
+        public Service Service { get; set; }
+
+        public DateTime ScheduledDate { get; set; }
+
+        public List<Employee> AssignedEmployees { get; set; }
     }
 }

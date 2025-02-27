@@ -2,10 +2,15 @@
 {
     public class Asset
     {
-        private Guid Id { get; set; }
-        private string Type { get; set; }
-        private decimal RentAmount { get; set; }
-        private bool IsOccupied { get; set; }
-        private List<OccupancyHistory> OccupancyHistory { get; set; }
+        public Guid Id { get; set; }
+        public string Type { get; set; }
+        public decimal RentAmount { get; set; }
+        public bool IsOccupied { get; set; }
+
+        public List<OccupancyHistory> OccupancyHistory { get; set; }
+
+        public List<RentHistory> RentHistory { get; set; }
+
+        public List<RentInvoice> RentInvoices { get; set; }
     }
 }
