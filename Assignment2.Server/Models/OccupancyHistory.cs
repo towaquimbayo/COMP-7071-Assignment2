@@ -2,12 +2,15 @@
 {
     public class OccupancyHistory
     {
-        private Guid id { get; set; }
-        private Guid AssetId { get; set; }
-        private Guid RenterId { get; set; }
-        private DateTime StartDate { get; set; }
-        private DateTime? EndDate { get; set; }
-        private Asset Asset { get; set; }
-        private Renter Renter { get; set; }
+        public Guid Id { get; set; }
+        public Guid AssetId { get; set; }
+        public Guid RenterId { get; set; }
+
+        public Asset Asset { get; set; }
+
+        public Renter Renter { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }
