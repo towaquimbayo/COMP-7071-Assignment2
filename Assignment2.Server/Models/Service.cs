@@ -2,10 +2,11 @@
 {
     public class Service
     {
-        private Guid Id { get; set; }
-        private string Name { get; set; }
-        private string Description { get; set; }
-        private decimal Rate { get; set; }
-        private List<ServiceBooking> Bookings { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Rate { get; set; }
+
+        public List<ServiceBooking> Bookings { get; set; }
     }
 }

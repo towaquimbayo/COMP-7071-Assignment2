@@ -2,14 +2,17 @@
 {
     public class RentInvoice
     {
-        private Guid Id { get; set; }
-        private Guid AssetId { get; set; }
-        private Guid RenterId { get; set; }
-        private DateTime IssueDate { get; set; }
-        private DateTime DueDate { get; set; }
-        private decimal AmountDue { get; set; }
-        private bool IsPaid { get; set; }
-        private Asset Asset { get; set; }
-        private Renter Renter { get; set; }
+        public Guid Id { get; set; }
+        public Guid AssetId { get; set; }
+        public Guid RenterId { get; set; }
+
+        public Asset Asset { get; set; }
+
+        public Renter Renter { get; set; }
+
+        public DateTime IssueDate { get; set; }
+        public DateTime DueDate { get; set; }
+        public decimal AmountDue { get; set; }
+        public bool IsPaid { get; set; }
     }
 }
