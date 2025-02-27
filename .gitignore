@@ -10,3 +10,5 @@ NuGetScratch/
 .idea/
 .vs/
 *.cache
+/Assignment2.Server/obj
+*.cache
