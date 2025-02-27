@@ -24,7 +24,7 @@ namespace Assignment2.Server.Controllers
         {
             var payroll = db.Payrolls.Find(id);
             if (payroll == null)
-                return HttpNotFound();
+                return NotFound();
             return View(payroll);
         }
 
