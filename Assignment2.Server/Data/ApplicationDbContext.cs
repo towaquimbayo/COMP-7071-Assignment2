@@ -1,5 +1,8 @@
 using Assignment2.Server.Models;
 using Microsoft.EntityFrameworkCore;
+
+namespace Assignment2.Server.Data
+{
     public class ApplicationDbContext : DbContext
     {
         
@@ -212,3 +215,4 @@ using Microsoft.EntityFrameworkCore;
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
+}

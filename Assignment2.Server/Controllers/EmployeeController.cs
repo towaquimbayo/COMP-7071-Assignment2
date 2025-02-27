@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Assignment2.Server.Data;
 using Assignment2.Server.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Assignment2.Server.Controllers
