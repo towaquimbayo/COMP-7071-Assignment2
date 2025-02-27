@@ -2,9 +2,15 @@
 {
     public class Renter
     {
-        private Guid Id { get; set; }
-        private string Name { get; set; }
-        private string ContactInfo { get; set; }
-        private string EmergencyContact { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string ContactInfo { get; set; }
+        public string EmergencyContact { get; set; }
+
+        public List<OccupancyHistory> OccupancyHistories { get; set; }
+
+        public List<RentHistory> RentHistories { get; set; }
+
+        public List<RentInvoice> RentInvoices { get; set; }
     }
 }
