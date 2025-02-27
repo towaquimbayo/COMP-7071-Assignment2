@@ -2,12 +2,15 @@
 {
     public class Attendance
     {
-        private Guid Id { get; set; }
-        private Guid EmployeeId { get; set; }
-        private Guid ShiftId { get; set; }
-        private Employee Employee { get; set; }
-        private Shift Shift { get; set; }
-        private bool ApprovedByManager { get; set; }
-        private string Notes { get; set; }
+        public Guid Id { get; set; }
+        public Guid EmployeeId { get; set; }
+        public Guid ShiftId { get; set; }
+
+        public Employee Employee { get; set; }
+
+        public Shift Shift { get; set; }
+
+        public bool ApprovedByManager { get; set; }
+        public string Notes { get; set; }
     }
 }
