@@ -1,0 +1,19 @@
+.DS_Store
+
+# dotnet core
+bin/
+obj/
+project.lock.json
+NuGetScratch/
+
+# IDE
+.idea/
+.vs/
+*.cache
+/Assignment2.Server/obj
+
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
