@@ -5,38 +5,37 @@ using Assignment2.Server.Models;
 
 namespace Assignment2.Server.Services
 {
-    public static class PayrollService
+    public class PayrollService(ApplicationDbContext db)
     {
-        public static void GeneratePayroll()
+        private readonly ApplicationDbContext _db = db;
+
+        public void GeneratePayroll()
         {
-            using (var db = new ApplicationDbContext())
+            var employees = _db.Employees.ToList();
+            foreach (var emp in employees)
             {
-                var employees = db.Employees.ToList();
-                foreach (var emp in employees)
+                // Simplified payroll calculation – replace with real logic.
+                var basePay = emp.PayRate * 8; // Assume one 8-hour shift.
+                decimal deductions = 0;
+                decimal overtime = 0;
+                decimal taxRate = 0.15m;
+                decimal netPay = (basePay + overtime - deductions) * (1 - taxRate);
+
+                var payroll = new Payroll
                 {
-                    // Simplified payroll calculation – replace with real logic.
-                    var basePay = emp.PayRate * 8; // Assume one 8-hour shift.
-                    decimal deductions = 0;
-                    decimal overtime = 0;
-                    decimal taxRate = 0.15m;
-                    decimal netPay = (basePay + overtime - deductions) * (1 - taxRate);
+                    Id = Guid.NewGuid(),
+                    EmployeeId = emp.Id,
+                    PayDate = DateTime.Now,
+                    BasePay = basePay,
+                    Deductions = deductions,
+                    OvertimePay = overtime,
+                    TaxRate = taxRate,
+                    NetPay = netPay
+                };
 
-                    var payroll = new Payroll
-                    {
-                        Id = Guid.NewGuid(),
-                        EmployeeId = emp.Id,
-                        PayDate = DateTime.Now,
-                        BasePay = basePay,
-                        Deductions = deductions,
-                        OvertimePay = overtime,
-                        TaxRate = taxRate,
-                        NetPay = netPay
-                    };
-
-                    db.Payrolls.Add(payroll);
-                }
-                db.SaveChanges();
+                _db.Payrolls.Add(payroll);
             }
+            _db.SaveChanges();
         }
     }
 }
