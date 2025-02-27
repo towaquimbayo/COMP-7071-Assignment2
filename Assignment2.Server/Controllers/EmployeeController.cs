@@ -26,7 +26,7 @@ namespace Assignment2.Server.Controllers
                                        .Include(e => e.Shifts)
                                        .FirstOrDefault(e => e.Id == id);
             if (employee == null)
-                return HttpNotFound();
+                return NotFound();
             return View(employee);
         }
         // Create new employee.
@@ -55,7 +55,7 @@ namespace Assignment2.Server.Controllers
         {
             var employee = db.Employees.Find(id);
             if (employee == null)
-                return HttpNotFound();
+                return NotFound();
             ViewBag.Managers = db.Employees.ToList();
             return View(employee);
         }
