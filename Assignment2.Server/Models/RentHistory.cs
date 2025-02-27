@@ -2,11 +2,16 @@
 {
     public class RentHistory
     {
-        private Guid id { get; set; }
-        private Guid AssetId { get; set; }
-        private Guid RenderId { get; set; }
-        private decimal OldRentAmount { get; set; }
-        private decimal NewRentAmount { get; set; }
-        private DateTime EffectiveDate { get; set; }
+        public Guid Id { get; set; }
+        public Guid AssetId { get; set; }
+        public Guid RenterId { get; set; }
+
+        public Asset Asset { get; set; }
+
+        public Renter Renter { get; set; }
+
+        public decimal OldRentAmount { get; set; }
+        public decimal NewRentAmount { get; set; }
+        public DateTime EffectiveDate { get; set; }
     }
 }
