@@ -2,11 +2,13 @@
 {
     public class Invoice
     {
-        private Guid Id { get; set; }
-        private Guid ClientId { get; set; }
-        private Client Client { get; set; }
-        private DateTime IssueDate { get; set; }
-        private decimal TotalAmount { get; set; }
-        private bool IsPaid { get; set; }
+        public Guid Id { get; set; }
+        public Guid ClientId { get; set; }
+
+        public Client Client { get; set; }
+
+        public DateTime IssueDate { get; set; }
+        public decimal TotalAmount { get; set; }
+        public bool IsPaid { get; set; }
     }
 }

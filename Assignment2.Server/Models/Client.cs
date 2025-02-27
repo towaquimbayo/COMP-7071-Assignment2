@@ -2,9 +2,12 @@
 {
     public class Client
     {
-        private Guid Id { get; set; }
-        private string Name { get; set; }
-        private string ContactInfo { get; set; }
-        private List<ServiceBooking> Bookings { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string ContactInfo { get; set; }
+
+        public List<ServiceBooking> Bookings { get; set; }
+
+        public List<Invoice> Invoices { get; set; }
     }
 }
