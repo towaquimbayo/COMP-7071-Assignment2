@@ -60,7 +60,7 @@ namespace _7071Sprint1Demo.Controllers
         public async Task<IActionResult> Create([Bind("Id,Name,Address,EmergencyContact,JobTitle,PayRate,ManagerId")] Employee employee)
         {
             // Important: Remove Manager from ModelState since we're only binding ManagerId
-            ModelState.Remove("Manager");
+            //ModelState.Remove("Manager");
 
             // If the form sends an empty GUID or default value, set it to null
             if (employee.ManagerId == Guid.Empty)
