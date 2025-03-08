@@ -19,5 +19,8 @@ namespace _7071Sprint1Demo.Models
         public virtual List<OccupancyHistory> OccupancyHistories { get; set; } = new List<OccupancyHistory>();
         public virtual List<RentHistory> RentHistories { get; set; } = new List<RentHistory>();
         public virtual List<RentInvoice> RentInvoices { get; set; } = new List<RentInvoice>();
+
+       
     }
+
 }
