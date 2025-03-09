@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using _7071Sprint1Demo.Data;
 using _7071Sprint1Demo.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using _7071Sprint1Demo.Services;
 
 
 namespace _7071Sprint1Demo.Controllers
@@ -68,10 +69,53 @@ namespace _7071Sprint1Demo.Controllers
 
             if (ModelState.IsValid)
             {
-                rentInvoice.Id = Guid.NewGuid();
-                _context.Add(rentInvoice);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    rentInvoice.Id = Guid.NewGuid();
+                    _context.Add(rentInvoice);
+                    await _context.SaveChangesAsync();
+                
+                    try
+                    {
+                        // Try to send email, but continue even if it fails
+                        EmailService.SendRentInvoice(rentInvoice);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the error but don't stop the process
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        // Optionally add to ModelState or TempData if you want to show a message to the user
+                        // TempData["EmailError"] = "Invoice was created but email notification failed.";
+                    }
+                    try
+                    {
+                        // Enhanced logging for email service testing
+                        Console.WriteLine("-----BEGIN EMAIL SERVICE TEST [Create]-----");
+                        Console.WriteLine($"Timestamp: {DateTime.Now}");
+                        Console.WriteLine($"Attempting to email invoice {rentInvoice.Id} to client {rentInvoice.RenterId}");
+
+                        EmailService.SendRentInvoice(rentInvoice);
+
+                        Console.WriteLine("Email service call completed successfully");
+                        Console.WriteLine("-----END EMAIL SERVICE TEST [Create]-----");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"-----EMAIL SERVICE ERROR [Create]-----");
+                        Console.WriteLine($"Timestamp: {DateTime.Now}");
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                        Console.WriteLine($"-----END EMAIL SERVICE ERROR [Create]-----");
+                    }
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (Exception ex)
+                {
+                    // Handle any general exceptions
+                    ModelState.AddModelError("", $"Error creating invoice: {ex.Message}");
+                }
+
             }
 
             // If validation fails, repopulate dropdown lists
@@ -129,7 +173,55 @@ namespace _7071Sprint1Demo.Controllers
             _context.Entry(rentInvoice).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+                try
+                {
+                    rentInvoice.Id = Guid.NewGuid();
+                    _context.Add(rentInvoice);
+                    await _context.SaveChangesAsync();
+
+                    try
+                    {
+                        // Try to send email, but continue even if it fails
+                        EmailService.SendRentInvoice(rentInvoice);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the error but don't stop the process
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        // Optionally add to ModelState or TempData if you want to show a message to the user
+                        // TempData["EmailError"] = "Invoice was created but email notification failed.";
+                    }
+                    try
+                    {
+                        // Enhanced logging for email service testing
+                        Console.WriteLine("-----BEGIN EMAIL SERVICE TEST [Create]-----");
+                        Console.WriteLine($"Timestamp: {DateTime.Now}");
+                        Console.WriteLine($"Attempting to email invoice {rentInvoice.Id} to client {rentInvoice.RenterId}");
+
+                        EmailService.SendRentInvoice(rentInvoice);
+
+                        Console.WriteLine("Email service call completed successfully");
+                        Console.WriteLine("-----END EMAIL SERVICE TEST [Create]-----");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"-----EMAIL SERVICE ERROR [Create]-----");
+                        Console.WriteLine($"Timestamp: {DateTime.Now}");
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                        Console.WriteLine($"-----END EMAIL SERVICE ERROR [Create]-----");
+                    }
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (Exception ex)
+                {
+                    // Handle any general exceptions
+                    ModelState.AddModelError("", $"Error creating invoice: {ex.Message}");
+                }
+
+                return RedirectToAction(nameof(Index));
      }
 
  
@@ -162,7 +254,7 @@ namespace _7071Sprint1Demo.Controllers
         // POST: RentInvoice/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirm(Guid id)
         {
             var rentInvoice = await _context.RentInvoices.FindAsync(id);
             if (rentInvoice == null)
@@ -175,17 +267,6 @@ namespace _7071Sprint1Demo.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
-        // Email a rent invoice (if applicable, needs implementation).
-        public ActionResult Email(Guid id)
-        {
-            var invoice = _context.RentInvoices.Find(id);
-            if (invoice == null)
-                return NotFound();
-            // Email logic would go here
-            return RedirectToAction("Index");
-        }
     }
 }
 
