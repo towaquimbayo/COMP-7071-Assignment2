@@ -13,7 +13,7 @@ namespace _7071Sprint1Demo.Models
         [Required]
         public Guid ServiceId { get; set; }
 
-        public Client Client { get; set; }
+        public Client? Client { get; set; }
         public virtual Service Service { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
