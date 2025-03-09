@@ -48,7 +48,7 @@ namespace _7071Sprint1Demo.Controllers
         // GET: Shifts/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name");
             return View();
         }
 
@@ -59,6 +59,9 @@ namespace _7071Sprint1Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,EmployeeId,ShiftStart,ShiftEnd,IsRecurring")] Shift shift)
         {
+            // Remove validation for navigation properties
+            ModelState.Remove("Employee");
+
             if (ModelState.IsValid)
             {
                 shift.Id = Guid.NewGuid();
@@ -66,7 +69,7 @@ namespace _7071Sprint1Demo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", shift.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", shift.EmployeeId);
             return View(shift);
         }
 
@@ -83,7 +86,7 @@ namespace _7071Sprint1Demo.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", shift.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", shift.EmployeeId);
             return View(shift);
         }
 
@@ -94,6 +97,9 @@ namespace _7071Sprint1Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,EmployeeId,ShiftStart,ShiftEnd,IsRecurring")] Shift shift)
         {
+            // Remove validation for navigation properties
+            ModelState.Remove("Employee");
+
             if (id != shift.Id)
             {
                 return NotFound();
@@ -119,7 +125,7 @@ namespace _7071Sprint1Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", shift.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", shift.EmployeeId);
             return View(shift);
         }
 
