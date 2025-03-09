@@ -49,7 +49,7 @@ namespace _7071Sprint1Demo.Controllers
         // GET: Attendances/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name");
             ViewData["ShiftId"] = new SelectList(_context.Shifts, "Id", "Id");
             return View();
         }
@@ -61,6 +61,10 @@ namespace _7071Sprint1Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,EmployeeId,ShiftId,ApprovedByManager,Notes")] Attendance attendance)
         {
+            // Remove validation for navigation properties
+            ModelState.Remove("Employee");
+            ModelState.Remove("Shift");
+
             if (ModelState.IsValid)
             {
                 attendance.Id = Guid.NewGuid();
@@ -68,7 +72,7 @@ namespace _7071Sprint1Demo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", attendance.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", attendance.EmployeeId);
             ViewData["ShiftId"] = new SelectList(_context.Shifts, "Id", "Id", attendance.ShiftId);
             return View(attendance);
         }
@@ -86,7 +90,7 @@ namespace _7071Sprint1Demo.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", attendance.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", attendance.EmployeeId);
             ViewData["ShiftId"] = new SelectList(_context.Shifts, "Id", "Id", attendance.ShiftId);
             return View(attendance);
         }
@@ -98,6 +102,10 @@ namespace _7071Sprint1Demo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,EmployeeId,ShiftId,ApprovedByManager,Notes")] Attendance attendance)
         {
+            // Remove validation for navigation properties
+            ModelState.Remove("Employee");
+            ModelState.Remove("Shift");
+
             if (id != attendance.Id)
             {
                 return NotFound();
@@ -123,7 +131,7 @@ namespace _7071Sprint1Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", attendance.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", attendance.EmployeeId);
             ViewData["ShiftId"] = new SelectList(_context.Shifts, "Id", "Id", attendance.ShiftId);
             return View(attendance);
         }
