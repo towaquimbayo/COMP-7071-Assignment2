@@ -48,7 +48,7 @@ namespace _7071Sprint1Demo.Controllers
         // GET: VacationRequests/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name");
             return View();
         }
 
@@ -57,8 +57,11 @@ namespace _7071Sprint1Demo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,EmployeeId,StartDate,EndDate,ApprovedByManager,ApprovalDate")] VacationRequest vacationRequest)
+        public async Task<IActionResult> Create([Bind("Id,EmployeeId,Employee,StartDate,EndDate,ApprovedByManager,ApprovalDate")] VacationRequest vacationRequest)
         {
+            // Remove validation for navigation properties
+            ModelState.Remove("Employee");
+
             if (ModelState.IsValid)
             {
                 vacationRequest.Id = Guid.NewGuid();
@@ -66,7 +69,7 @@ namespace _7071Sprint1Demo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", vacationRequest.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", vacationRequest.EmployeeId);
             return View(vacationRequest);
         }
 
@@ -83,7 +86,7 @@ namespace _7071Sprint1Demo.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", vacationRequest.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", vacationRequest.EmployeeId);
             return View(vacationRequest);
         }
 
@@ -119,7 +122,7 @@ namespace _7071Sprint1Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", vacationRequest.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", vacationRequest.EmployeeId);
             return View(vacationRequest);
         }
 
