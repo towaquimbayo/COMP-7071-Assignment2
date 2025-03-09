@@ -1,0 +1,32 @@
+@model _7071Sprint1Demo.Models.RentHistory
+
+@{
+    ViewData["Title"] = "Rent History Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h3>Asset Type:</h3>
+    <p>@Model.Asset?.Type</p>
+</div>
+<div>
+    <h3>Renter Name:</h3>
+    <p>@Model.Renter?.Name</p>
+</div>
+<div>
+    <h3>Old Rent Amount:</h3>
+    <p>@Model.OldRentAmount</p>
+</div>
+<div>
+    <h3>New Rent Amount:</h3>
+    <p>@Model.NewRentAmount</p>
+</div>
+<div>
+    <h3>Effective Date:</h3>
+    <p>@Model.EffectiveDate.ToShortDateString()</p>
+</div>
+<div>
+    <a href="@Url.Action("Index", "RentHistory")">Back to List</a>
+</div>
+

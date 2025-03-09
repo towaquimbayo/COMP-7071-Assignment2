@@ -1,0 +1,36 @@
+@model _7071Sprint1Demo.Models.RentInvoice
+
+@{
+    ViewData["Title"] = "Rent Invoice Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h3>Asset Type:</h3>
+    <p>@Model.Asset?.Type</p>
+</div>
+<div>
+    <h3>Renter Name:</h3>
+    <p>@Model.Renter?.Name</p>
+</div>
+<div>
+    <h3>Issue Date:</h3>
+    <p>@Model.IssueDate.ToShortDateString()</p>
+</div>
+<div>
+    <h3>Due Date:</h3>
+    <p>@Model.DueDate.ToShortDateString()</p>
+</div>
+<div>
+    <h3>Amount Due:</h3>
+    <p>@Model.AmountDue.ToString("C")</p>
+</div>
+<div>
+    <h3>Is Paid:</h3>
+    <p>@(Model.IsPaid ? "Yes" : "No")</p>
+</div>
+
+<div>
+    <a href="@Url.Action("Index", "RentInvoice")">Back to List</a>
+</div>
