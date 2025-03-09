@@ -166,6 +166,10 @@ namespace _7071Sprint1Demo.Data
                 .WithMany(e => e.VacationRequests)
                 .HasForeignKey(vr => vr.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ServiceBooking>()
+    .HasMany(s => s.AssignedEmployees)
+    .WithMany(e => e.ServiceBookings);
         }
     }
 }
