@@ -1,0 +1,42 @@
+@model IEnumerable<_7071Sprint1Demo.Models.RentHistory>
+
+@{
+    ViewData["Title"] = "Rent History";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a href="@Url.Action("Create", "RentHistory")" class="btn btn-primary">Create New Rent History</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Asset</th>
+            <th>Renter</th>
+            <th>Old Rent Amount</th>
+            <th>New Rent Amount</th>
+            <th>Effective Date</th>
+            <th>Actions</th> <!-- New column for Edit/Delete links -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rentHistory in Model)
+        {
+            <tr>
+                <td>@rentHistory.Asset?.Type</td>
+                <td>@rentHistory.Renter?.Name</td>
+                <td>@rentHistory.OldRentAmount.ToString("C")</td>
+                <td>@rentHistory.NewRentAmount.ToString("C")</td>
+                <td>@rentHistory.EffectiveDate.ToShortDateString()</td>
+                <td>
+                    <a href="@Url.Action("Details", "RentHistory", new { id = rentHistory.Id })">View Details</a> |
+                    <a href="@Url.Action("Edit", "RentHistory", new { id = rentHistory.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete", "RentHistory", new { id = rentHistory.Id })"
+                       onclick="return confirm('Are you sure you want to delete this rent history?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
