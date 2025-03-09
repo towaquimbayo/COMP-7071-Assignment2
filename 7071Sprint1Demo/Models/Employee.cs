@@ -7,6 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace _7071Sprint1Demo.Models
 {
+    
+    public enum EmploymentType
+    {
+        FullTime,
+        PartTime,
+        OnCall
+    }
+    
     public class Employee
     {
         [Key]
