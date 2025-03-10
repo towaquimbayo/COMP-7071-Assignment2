@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IssueDate" class="control-label"></label>
-                <input asp-for="IssueDate" class="form-control" />
+                <input asp-for="IssueDate" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")" />
                 <span asp-validation-for="IssueDate" class="text-danger"></span>
             </div>
             <div class="form-group">
