@@ -78,7 +78,7 @@ namespace _7071Sprint1Demo.Controllers
         // POST: Renters/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id, Name, ContactInfor, EmergencyContact")] Renter renter)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id, Name, ContactInfo, EmergencyContact")] Renter renter)
         {
             if (id != renter.Id)
             {

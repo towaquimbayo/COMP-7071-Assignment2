@@ -46,7 +46,7 @@
             <!-- Effective Date -->
             <div class="form-group">
                 <label asp-for="EffectiveDate" class="control-label"></label>
-                <input asp-for="EffectiveDate" class="form-control" type="date" />
+                <input asp-for="EffectiveDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="EffectiveDate" class="text-danger"></span>
             </div>
 
