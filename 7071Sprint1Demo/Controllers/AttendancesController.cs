@@ -70,6 +70,40 @@ namespace _7071Sprint1Demo.Controllers
                 attendance.Id = Guid.NewGuid();
                 _context.Add(attendance);
                 await _context.SaveChangesAsync();
+
+                try
+                {
+                    // Try to send email, but continue even if it fails
+                    EmailService.NotifyAttendanceChange(attendance);
+                }
+                catch (Exception ex)
+                {
+                    // Log the error but don't stop the process
+                    Console.WriteLine($"Error sending email: {ex.Message}");
+                    // Optionally add to ModelState or TempData if you want to show a message to the user
+                    // TempData["EmailError"] = "Attendance was created but email notification failed.";
+                }
+                try
+                {
+                    // Enhanced logging for email service testing
+                    Console.WriteLine("-----BEGIN EMAIL SERVICE TEST [Create]-----");
+                    Console.WriteLine($"Timestamp: {DateTime.Now}");
+                    Console.WriteLine($"Attempting to email attendance update for Employee {attendance.EmployeeId} on Shift {attendance.ShiftId}");
+
+                    EmailService.NotifyAttendanceChange(attendance);
+
+                    Console.WriteLine("Email service call completed successfully");
+                    Console.WriteLine("-----END EMAIL SERVICE TEST [Create]-----");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"-----EMAIL SERVICE ERROR [Create]-----");
+                    Console.WriteLine($"Timestamp: {DateTime.Now}");
+                    Console.WriteLine($"Error sending email: {ex.Message}");
+                    Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                    Console.WriteLine($"-----END EMAIL SERVICE ERROR [Create]-----");
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", attendance.EmployeeId);
@@ -117,6 +151,40 @@ namespace _7071Sprint1Demo.Controllers
                 {
                     _context.Update(attendance);
                     await _context.SaveChangesAsync();
+
+                    try
+                    {
+                        // Try to send email, but continue even if it fails
+                        EmailService.NotifyAttendanceChange(attendance);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the error but don't stop the process
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        // Optionally add to ModelState or TempData if you want to show a message to the user
+                        // TempData["EmailError"] = "Attendance was created but email notification failed.";
+                    }
+                    try
+                    {
+                        // Enhanced logging for email service testing
+                        Console.WriteLine("-----BEGIN EMAIL SERVICE TEST [Create]-----");
+                        Console.WriteLine($"Timestamp: {DateTime.Now}");
+                        Console.WriteLine($"Attempting to email attendance update for Employee {attendance.EmployeeId} on Shift {attendance.ShiftId}");
+
+                        EmailService.NotifyAttendanceChange(attendance);
+
+                        Console.WriteLine("Email service call completed successfully");
+                        Console.WriteLine("-----END EMAIL SERVICE TEST [Create]-----");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"-----EMAIL SERVICE ERROR [Create]-----");
+                        Console.WriteLine($"Timestamp: {DateTime.Now}");
+                        Console.WriteLine($"Error sending email: {ex.Message}");
+                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                        Console.WriteLine($"-----END EMAIL SERVICE ERROR [Create]-----");
+                    }
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
