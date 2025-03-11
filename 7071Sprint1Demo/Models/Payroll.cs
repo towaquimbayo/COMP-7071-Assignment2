@@ -10,7 +10,7 @@ namespace _7071Sprint1Demo.Models
         [Required]
         public Guid EmployeeId { get; set; }
 
-        public virtual Employee Employee { get; set; }
+        public virtual Employee? Employee { get; set; }
 
         public DateTime PayDate { get; set; }
 

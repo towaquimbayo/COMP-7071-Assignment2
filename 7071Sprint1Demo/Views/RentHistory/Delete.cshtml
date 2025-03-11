@@ -1,0 +1,25 @@
+﻿@model _7071Sprint1Demo.Models.RentHistory
+
+@{
+    ViewData["Title"] = "Delete Rent History";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Are you sure you want to delete this Rent History?</h4>
+<hr />
+<div>
+    <h5>Asset: @Model.Asset?.Type</h5>
+    <h5>Renter: @Model.Renter?.Name</h5>
+    <h5>Old Rent Amount: @Model.OldRentAmount.ToString("C")</h5>
+    <h5>New Rent Amount: @Model.NewRentAmount.ToString("C")</h5>
+    <h5>Effective Date: @Model.EffectiveDate.ToShortDateString()</h5>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

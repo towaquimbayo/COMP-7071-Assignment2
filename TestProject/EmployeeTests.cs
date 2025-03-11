@@ -1,8 +1,5 @@
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.IO;
 
 namespace TestProject
 {
@@ -24,9 +21,9 @@ namespace TestProject
         {
             // Navigate to the Employees page
             driver.Navigate().GoToUrl(baseUrl + "/Employees");
+            driver.FindElement(By.LinkText("Create New")).Click();
 
             // Fill out the form
-            driver.FindElement(By.LinkText("Create New")).Click();
             driver.FindElement(By.Id("Name")).SendKeys("Burns Montgomery");
             driver.FindElement(By.Id("Address")).SendKeys("Springfield");
             driver.FindElement(By.Id("EmergencyContact")).SendKeys("777-777-7777");
@@ -42,8 +39,11 @@ namespace TestProject
         [Test]
         public void CreateEmployeeWithManagerTest()
         {
+            // Navigate to the Employees page
             driver.Navigate().GoToUrl(baseUrl + "/Employees");
             driver.FindElement(By.LinkText("Create New")).Click();
+
+            // Fill out the form
             driver.FindElement(By.Id("Name")).SendKeys("Homer Simpson");
             driver.FindElement(By.Id("Address")).SendKeys("742 Evergreen Terrace");
             driver.FindElement(By.Id("EmergencyContact")).SendKeys("555-555-5555");
@@ -63,23 +63,17 @@ namespace TestProject
         [Test]
         public void EditEmployeeTest()
         {
+            // Navigate to the Employees page
             driver.Navigate().GoToUrl(baseUrl + "/Employees");
             driver.FindElement(By.LinkText("Edit")).Click();
+
+            // Edit the form
             driver.FindElement(By.Id("Name")).Clear();
             driver.FindElement(By.Id("Name")).SendKeys("Burns C. Montgomery");
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
             driver.Navigate().Refresh();
             Assert.IsTrue(driver.PageSource.Contains("Burns C. Montgomery"));
         }
-
-        //[Test]
-        //public void GeneratePayrollTest()
-        //{
-        //    driver.Navigate().GoToUrl(baseUrl + "/Payroll");
-        //    driver.FindElement(By.LinkText("Generate Payroll")).Click();
-        //    driver.Navigate().Refresh();
-        //    Assert.IsTrue(driver.PageSource.Contains("Payroll Generated"));
-        //}
 
         [TearDown]
         public void TearDown()
