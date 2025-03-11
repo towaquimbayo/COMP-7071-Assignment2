@@ -35,8 +35,7 @@ namespace _7071Sprint1Demo.Models
         [Required]
         public DateTime DateApplied { get; set; }
 
-        [Required]
-        public ApplicantType ApplicantType { get; set; }
+        public ApplicantType? ApplicantType { get; set; }
 
         // Employee-specific fields
         public string? PositionAppliedFor { get; set; }  
