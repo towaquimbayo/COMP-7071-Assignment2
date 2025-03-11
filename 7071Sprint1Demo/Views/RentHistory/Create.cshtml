@@ -1,0 +1,74 @@
+﻿@model _7071Sprint1Demo.Models.RentHistory
+
+@{
+    ViewData["Title"] = "Create Rent History";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Create Rent History</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Asset Selection Dropdown -->
+            <div class="form-group">
+                <label asp-for="AssetId" class="control-label"></label>
+                <select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetList"></select>
+
+                <span asp-validation-for="AssetId" class="text-danger"></span>
+            </div>
+
+            <!-- Renter Selection Dropdown -->
+            <div class="form-group">
+                <label asp-for="RenterId" class="control-label"></label>
+                <select asp-for="RenterId" class="form-control" asp-items="ViewBag.RenterList"></select>
+
+                <span asp-validation-for="RenterId" class="text-danger"></span>
+            </div>
+
+            <!-- Old Rent Amount -->
+            <div class="form-group">
+                <label asp-for="OldRentAmount" class="control-label"></label>
+                <input asp-for="OldRentAmount" class="form-control" />
+                <span asp-validation-for="OldRentAmount" class="text-danger"></span>
+            </div>
+
+            <!-- New Rent Amount -->
+            <div class="form-group">
+                <label asp-for="NewRentAmount" class="control-label"></label>
+                <input asp-for="NewRentAmount" class="form-control" />
+                <span asp-validation-for="NewRentAmount" class="text-danger"></span>
+            </div>
+
+            <!-- Effective Date -->
+            <div class="form-group">
+                <label asp-for="EffectiveDate" class="control-label"></label>
+                <input asp-for="EffectiveDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="EffectiveDate" class="text-danger"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input type="submit" value="Create Rent History" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.Message != null)
+{
+        <div class="alert alert-warning">@ViewBag.Message</div>
+}
+
+<div>
+    <a asp-action="Index">Back to Rent History List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

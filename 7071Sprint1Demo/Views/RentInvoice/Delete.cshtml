@@ -1,0 +1,21 @@
+﻿@model _7071Sprint1Demo.Models.RentInvoice
+
+@{
+    ViewData["Title"] = "Delete Rent Invoice";
+}
+
+<h2>Delete Rent Invoice</h2>
+
+<h3>Are you sure you want to delete this rent invoice?</h3>
+<div>
+    <h4>@Model.Asset.Type - @Model.Renter.Name</h4>
+    <p><strong>Issue Date:</strong> @Model.IssueDate.ToShortDateString()</p>
+    <p><strong>Due Date:</strong> @Model.DueDate.ToShortDateString()</p>
+    <p><strong>Amount Due:</strong> @Model.AmountDue</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+</form>

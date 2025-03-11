@@ -15,7 +15,6 @@ builder.Services.AddRazorPages(); // Enables Razor Pages if needed
 // Add API support (Swagger)
 builder.Services.AddEndpointsApiExplorer();
 
-
 var app = builder.Build();
 
 // Serve default static files (for React frontend if used)
@@ -37,11 +36,11 @@ using (var scope = app.Services.CreateScope())
 // Map controllers and MVC views
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllerRoute(
+    _ = endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}"); // Ensure it loads your MVC views
 
-    endpoints.MapRazorPages(); // Supports Razor Pages if needed
+    _ = endpoints.MapRazorPages(); // Supports Razor Pages if needed
 });
 
 // Remove forced API fallback for React, allow MVC views to load
