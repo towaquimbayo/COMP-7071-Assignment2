@@ -19,3 +19,11 @@ body {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+table thead th {
+  font-weight: normal;
+  color: #575757;
+}
+
+table tbody tr td {
+  padding: 1rem 0.5rem!important;
+}
