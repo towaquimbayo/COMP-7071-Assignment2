@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _7071Sprint1Demo.Data;
 using _7071Sprint1Demo.Models;
+using _7071Sprint1Demo.Services;
 
 namespace _7071Sprint1Demo.Controllers
 {
