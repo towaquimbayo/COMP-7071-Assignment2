@@ -10,6 +10,7 @@ namespace _7071Sprint1Demo.Data
         // DbSets
         public DbSet<Asset> Assets { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Applicant> Applicants { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
