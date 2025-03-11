@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Create";
+    var now = DateTime.Now;
+    var shiftEnd = now.AddHours(8);
 }
 
 <h1>Create</h1>
@@ -18,12 +20,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="ShiftStart" class="control-label"></label>
-                <input asp-for="ShiftStart" class="form-control" />
+                <input asp-for="ShiftStart" class="form-control" type="datetime-local" value="@now.ToString("yyyy-MM-ddTHH:mm")" />
                 <span asp-validation-for="ShiftStart" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ShiftEnd" class="control-label"></label>
-                <input asp-for="ShiftEnd" class="form-control" />
+                <input asp-for="ShiftEnd" class="form-control" type="datetime-local" value="@shiftEnd.ToString("yyyy-MM-ddTHH:mm")" />
                 <span asp-validation-for="ShiftEnd" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
