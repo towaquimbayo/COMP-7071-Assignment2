@@ -7,6 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace _7071Sprint1Demo.Models
 {
+    
+    public enum EmploymentType
+    {
+        FullTime,
+        PartTime,
+        OnCall
+    }
+    
     public class Employee
     {
         [Key]
@@ -43,6 +51,8 @@ namespace _7071Sprint1Demo.Models
         [ForeignKey("ManagerId")]
         [Display(Name = "Manager")]
         public virtual Employee? Manager { get; set; }
+        
+        public EmploymentType? EmploymentType { get; set; }
 
         public virtual List<ServiceBooking> ServiceBookings { get; set; } = new List<ServiceBooking>();
         public virtual List<VacationRequest> VacationRequests { get; set; } = new List<VacationRequest>();
