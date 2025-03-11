@@ -48,7 +48,7 @@ namespace _7071Sprint1Demo.Controllers
         // GET: Payroll/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name");
             return View();
         }
 
@@ -66,7 +66,12 @@ namespace _7071Sprint1Demo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", payroll.EmployeeId);
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                Console.WriteLine("Validation errors: " + string.Join(", ", errors));
+            }
+            ViewBag.EmployeeId = new SelectList(_context.Employees, "Id", "Name", payroll.EmployeeId);
             return View(payroll);
         }
 
@@ -83,7 +88,7 @@ namespace _7071Sprint1Demo.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", payroll.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", payroll.EmployeeId);
             return View(payroll);
         }
 
@@ -119,7 +124,7 @@ namespace _7071Sprint1Demo.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Address", payroll.EmployeeId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Name", payroll.EmployeeId);
             return View(payroll);
         }
 
