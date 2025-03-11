@@ -1,3 +1,7 @@
+:root {
+    --bs-primary: #435498;
+}
+
 html {
     font-size: 14px;
     position: relative;
@@ -15,15 +19,30 @@ body {
   }
 }
 
+.btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+}
+
+.btn-primary:hover {
+    background-color: #2d3d7b !important;
+    border-color: #2d3d7b !important;
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #435498;
 }
 
 table thead th {
-  font-weight: normal;
-  color: #575757;
+    font-weight: normal;
+    color: #575757;
 }
 
 table tbody tr td {
   padding: 1rem 0.5rem!important;
+}
+
+.navlink-active {
+    font-weight: 600;
+    color: var(--bs-primary) !important;
 }
