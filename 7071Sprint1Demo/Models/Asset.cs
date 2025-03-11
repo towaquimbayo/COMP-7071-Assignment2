@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography.Pkcs;
 namespace _7071Sprint1Demo.Models
 {
  
@@ -20,7 +21,9 @@ namespace _7071Sprint1Demo.Models
             public virtual List<OccupancyHistory> OccupancyHistory { get; set; } = new List<OccupancyHistory>();
             public virtual List<RentHistory> RentHistory { get; set; } = new List<RentHistory>();
             public virtual List<RentInvoice> RentInvoices { get; set; } = new List<RentInvoice>();
-        }
+
+          
+    }
 }
 
 

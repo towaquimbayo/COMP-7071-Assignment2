@@ -11,7 +11,7 @@ namespace _7071Sprint1Demo.Models
         [Required]
         public Guid ClientId { get; set; }
 
-        public virtual Client Client { get; set; }
+        public virtual Client? Client { get; set; }
 
         public DateTime IssueDate { get; set; }
 

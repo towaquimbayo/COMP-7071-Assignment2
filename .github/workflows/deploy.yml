@@ -16,24 +16,8 @@ jobs:
       - name: 🚚 Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: "8.0.x"
       - name: 📦 Restore dependencies
         run: dotnet restore
       - name: 🔨 Build .NET
         run: dotnet build --configuration Release --no-restore
-      - name: 🚚 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: 📦 Cache npm dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: 🔨 Install and build React frontend dependencies
-        working-directory: assignment2.client
-        run: |
-          npm install
-          npm run build --if-present
