@@ -7,16 +7,13 @@
 
 <div style="margin-top:7rem; min-height:80vh;">
     <div class="d-flex justify-content-between mb-4">
-        <div class="d-flex gap-4">
-            <h1>Rent History</h1>
-            <div class="px-4 py-2 bg-primary bg-opacity-10 justify-content-center align-content-center" style="border-radius: 1rem;">
-				<h3 class="fw-normal mb-0 text-primary">@count</h3>
+        <div class="d-flex gap-3 align-items-center">
+            <h2 class="mb-0">Rent History</h2>
+            <div class="px-4 py-1 bg-primary bg-opacity-10 justify-content-center align-content-center" style="border-radius: 1rem;">
+                <h4 class="fw-normal mb-0 text-primary">@count</h4>
             </div>
         </div>
-        <a asp-action="Create"
-            class="btn btn-primary px-3 py-2"
-            style="height:fit-content;font-size:1.1rem;border-radius:0.5rem;"
-        >Create New</a>
+        <a asp-action="Create" class="btn btn-primary px-3 py-2" style="height:fit-content;font-size:1.1rem;border-radius:0.5rem;">Create New</a>
     </div>
 
     @if (Model.Any())
