@@ -39,13 +39,13 @@
                         @Html.DisplayFor(modelItem => item.Renter.Name)
                     </td>
                     <td>
-                        $@item.OldRentAmount.ToString("C")
+                        @item.OldRentAmount.ToString("C")
                     </td>
                     <td>
-                        $@item.NewRentAmount.ToString("C")
+                        @item.NewRentAmount.ToString("C")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.EffectiveDate.ToString("yyyy-MM-dd"))
+                        @Html.DisplayFor(modelItem => item.EffectiveDate)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none">

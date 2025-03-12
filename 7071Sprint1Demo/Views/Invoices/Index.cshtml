@@ -33,10 +33,10 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Client != null ? item.Client.Name : "N/A")
+                            @(item.Client != null ? item.Client.Name : "N/A")
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IssueDate.ToString("yyyy-MM-dd"))
+                            @Html.DisplayFor(modelItem => item.IssueDate)
                         </td>
                         <td>
                             $@Html.DisplayFor(modelItem => item.TotalAmount)

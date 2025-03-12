@@ -35,10 +35,10 @@
             @foreach (var item in Model) {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Employee != null ? item.Employee.Name : "N/A")
+                        @(item.Employee != null ? item.Employee.Name : "N/A")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PayDate.ToString("yyyy-MM-dd"))
+                        @Html.DisplayFor(modelItem => item.PayDate)
                     </td>
                     <td>
                         $@Html.DisplayFor(modelItem => item.BasePay)
@@ -50,7 +50,7 @@
                         $@Html.DisplayFor(modelItem => item.OvertimePay)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TaxRate) * 100%
+                        @Html.DisplayFor(modelItem => item.TaxRate)
                     </td>
                     <td>
                         $@Html.DisplayFor(modelItem => item.NetPay)
