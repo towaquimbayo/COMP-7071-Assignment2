@@ -16,7 +16,7 @@ namespace TestProject
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
-        [Test]
+        [Test, Order(1)]
         public void CreateEmployeeTest()
         {
             // Navigate to the Employees page
@@ -36,7 +36,23 @@ namespace TestProject
             Assert.IsTrue(driver.PageSource.Contains("Burns Montgomery"));
         }
 
-        [Test]
+
+        [Test, Order(2)]
+        public void EditEmployeeTest()
+        {
+            // Navigate to the Employees page
+            driver.Navigate().GoToUrl(baseUrl + "/Employees");
+            driver.FindElement(By.LinkText("Edit")).Click();
+
+            // Edit the form
+            driver.FindElement(By.Id("Name")).Clear();
+            driver.FindElement(By.Id("Name")).SendKeys("Burns C. Montgomery");
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+            driver.Navigate().Refresh();
+            Assert.IsTrue(driver.PageSource.Contains("Burns C. Montgomery"));
+        }
+
+        [Test, Order(3)]
         public void CreateEmployeeWithManagerTest()
         {
             // Navigate to the Employees page
@@ -53,29 +69,113 @@ namespace TestProject
             // For manager, select the first option
             var managerDropdown = driver.FindElement(By.Id("ManagerId"));
             var select = new OpenQA.Selenium.Support.UI.SelectElement(managerDropdown);
-            select.SelectByText("Burns Montgomery");
+            select.SelectByText("Burns C. Montgomery");
 
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
             driver.Navigate().Refresh();
             Assert.IsTrue(driver.PageSource.Contains("Homer Simpson"));
         }
 
-        [Test]
-        public void EditEmployeeTest()
+        [Test, Order(4)]
+        public void CreatePayrollTests()
         {
-            // Navigate to the Employees page
-            driver.Navigate().GoToUrl(baseUrl + "/Employees");
+            // Navigate to the Payroll page
+            driver.Navigate().GoToUrl(baseUrl + "/Payroll");
+            driver.FindElement(By.LinkText("Create New")).Click();
+
+            // Fill out the form
+            var employeeDropdown = driver.FindElement(By.Id("EmployeeId"));
+            var select = new OpenQA.Selenium.Support.UI.SelectElement(employeeDropdown);
+            select.SelectByText("Homer Simpson");
+
+            driver.FindElement(By.Id("BasePay")).SendKeys("5000");
+            driver.FindElement(By.Id("Deductions")).SendKeys("200");
+            driver.FindElement(By.Id("OvertimePay")).SendKeys("500");
+            driver.FindElement(By.Id("TaxRate")).SendKeys("0.1");
+            driver.FindElement(By.Id("NetPay")).SendKeys("4770");
+
+            // Submit the form
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+            driver.Navigate().Refresh();
+            Assert.IsTrue(driver.PageSource.Contains("4770"));
+        }
+
+        [Test, Order(5)]
+        public void EditPayrollTests()
+        {
+            // Navigate to the Payroll page
+            driver.Navigate().GoToUrl(baseUrl + "/Payroll");
             driver.FindElement(By.LinkText("Edit")).Click();
 
             // Edit the form
-            driver.FindElement(By.Id("Name")).Clear();
-            driver.FindElement(By.Id("Name")).SendKeys("Burns C. Montgomery");
+            driver.FindElement(By.Id("BasePay")).Clear();
+            driver.FindElement(By.Id("BasePay")).SendKeys("2000");
+
+            driver.FindElement(By.Id("NetPay")).Clear();
+            driver.FindElement(By.Id("NetPay")).SendKeys("4950");
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
             driver.Navigate().Refresh();
-            Assert.IsTrue(driver.PageSource.Contains("Burns C. Montgomery"));
+            Assert.IsTrue(driver.PageSource.Contains("4950"));
         }
 
-        [TearDown]
+        [Test, Order(6)]
+        public void CreateShiftsTests()
+        {
+            // Navigate to the Shifts page
+            driver.Navigate().GoToUrl(baseUrl + "/Shifts");
+            driver.FindElement(By.LinkText("Create New")).Click();
+
+            // Fill out the form
+            var employeeDropdown = driver.FindElement(By.Id("EmployeeId"));
+            var select = new OpenQA.Selenium.Support.UI.SelectElement(employeeDropdown);
+            select.SelectByText("Homer Simpson");
+
+            driver.FindElement(By.Id("IsRecurring")).Click();
+
+            // Submit the form
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+            driver.Navigate().Refresh();
+            Assert.IsTrue(driver.PageSource.Contains("Homer Simpson"));
+        }
+
+        [Test, Order(7)]
+        public void CreateVacationRequestsTest()
+        {
+            // Navigate to the VacationRequests page
+            driver.Navigate().GoToUrl(baseUrl + "/VacationRequests");
+            driver.FindElement(By.LinkText("Create New")).Click();
+
+            // Fill out the form
+            var employeeDropdown = driver.FindElement(By.Id("EmployeeId"));
+            var select = new OpenQA.Selenium.Support.UI.SelectElement(employeeDropdown);
+            select.SelectByText("Homer Simpson");
+
+            // Submit the form
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+            driver.Navigate().Refresh();
+            Assert.IsTrue(driver.PageSource.Contains("Homer Simpson"));
+
+        }
+
+        //[Test, Order(8)]
+        //public void EditVacationRequestsTest()
+        //{
+        //    // Navigate to the VacationRequests page
+        //    driver.Navigate().GoToUrl(baseUrl + "/VacationRequests");
+        //    driver.FindElement(By.LinkText("Edit")).Click();
+        //    // Edit the form
+        //    driver.FindElement(By.Id("ApprovedByManager")).Click();
+        //    var approvalDate = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");
+        //    driver.FindElement(By.Id("ApprovalDate")).SendKeys(approvalDate);
+
+        //    // Submit the form
+        //    driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+        //    driver.Navigate().Refresh();
+        //    Assert.IsTrue(driver.PageSource.Contains(approvalDate));
+
+        //}
+
+            [TearDown]
         public void TearDown()
         {
             if (driver != null)

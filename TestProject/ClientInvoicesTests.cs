@@ -6,7 +6,7 @@ namespace TestProject
     public class ClientInvoicesTests
     {
         private ChromeDriver driver;
-        private string baseUrl = "https://localhost:44348";
+        private string baseUrl = "https://localhost:44348"; // Change this to your localhost
         [SetUp]
         public void Setup()
         {
