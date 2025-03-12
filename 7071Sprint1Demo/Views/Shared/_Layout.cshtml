@@ -51,10 +51,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Renters" asp-action="Index">Renters</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Renters" ? "navlink-active" : "text-dark")"
+                               asp-area=""
+                               asp-controller="Renters"
+                               asp-action="Index">
+                                Renters
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Services" ? "navlink-active" : "text-dark")"
+                               asp-area=""
+                               asp-controller="Services"
+                               asp-action="Index">
+                                Services
+                            </a>
                         </li>
                     </ul>
                 </div>
