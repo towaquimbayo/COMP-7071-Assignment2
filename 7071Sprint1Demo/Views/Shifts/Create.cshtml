@@ -1,47 +1,47 @@
 ﻿@model _7071Sprint1Demo.Models.Shift
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Shift";
 }
 
-<h1>Create</h1>
-
-<h4>Shift</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShiftStart" class="control-label"></label>
-                <input asp-for="ShiftStart" class="form-control" />
-                <span asp-validation-for="ShiftStart" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShiftEnd" class="control-label"></label>
-                <input asp-for="ShiftEnd" class="form-control" />
-                <span asp-validation-for="ShiftEnd" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsRecurring" /> @Html.DisplayNameFor(model => model.IsRecurring)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Create New Shift</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EmployeeId" class="control-label">Employee ID</label>
+                    <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShiftStart" class="control-label">Start Date and Time</label>
+                    <input asp-for="ShiftStart" class="form-control" />
+                    <span asp-validation-for="ShiftStart" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ShiftEnd" class="control-label">End Date and Time</label>
+                    <input asp-for="ShiftEnd" class="form-control" />
+                    <span asp-validation-for="ShiftEnd" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <input class="form-check-input" asp-for="IsRecurring" id="isRecurringCheckbox" />
+                    <label class="form-check-label" for="isRecurringCheckbox">Is Recurring</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
