@@ -33,7 +33,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Client != null ? item.Client.Name : "N/A")
+                            @(item.Client != null ? item.Client.Name : "N/A")
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Service.Name)

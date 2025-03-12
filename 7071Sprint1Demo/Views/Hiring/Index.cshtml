@@ -22,16 +22,11 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Address</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Emergency Contact</th>
                     <th>Application Status</th>
                     <th>Date Applied</th>
                     <th>Position Applied</th>
-                    <th>Resume</th>
-                    <th>Preferred Unit Type</th>
-                    <th>Income Verification</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -43,37 +38,19 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Phone)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.EmergencyContact)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.ApplicationStatus)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DateApplied.ToString("yyyy-MM-dd"))
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ApplicantType)
+                            @Html.DisplayFor(modelItem => item.DateApplied)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PositionAppliedFor)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Resume)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PreferredUnitType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IncomeVerification)
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none">

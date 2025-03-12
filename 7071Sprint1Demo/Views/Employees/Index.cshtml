@@ -48,13 +48,13 @@
                             @Html.DisplayFor(modelItem => item.JobTitle)
                         </td>
                         <td>
-                            $@Html.DisplayFor(modelItem => item.PayRate)
+                            @Html.DisplayFor(modelItem => item.PayRate)
                         </td>
 						<td>
-							@Html.DisplayFor(modelItem => item.EmploymentType)
+                            @(item.EmploymentType != null ? item.EmploymentType : "N/A")
 						</td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Manager != null ? item.Manager.Name : "N/A")
+                            @(item.Manager != null ? item.Manager.Name : "N/A")
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none">
