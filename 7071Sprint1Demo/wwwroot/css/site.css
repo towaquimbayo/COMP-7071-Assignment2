@@ -46,3 +46,11 @@ table tbody tr td {
     font-weight: 600;
     color: var(--bs-primary) !important;
 }
+
+form .form-group {
+    margin-bottom: 1rem!important;
+}
+
+form .text-danger {
+    font-size: 0.9rem;
+}
