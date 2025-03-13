@@ -1,65 +1,79 @@
 ﻿@model IEnumerable<_7071Sprint1Demo.Models.Employee>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Employees";
+	int count = Model.Count();
 }
 
-<h1>Index</h1>
+<div style="margin-top:7rem; min-height:80vh;">
+    <div class="d-flex justify-content-between mb-4">
+        <div class="d-flex gap-3 align-items-center">
+            <h2 class="mb-0">Employees</h2>
+            <div class="px-4 py-1 bg-primary bg-opacity-10 justify-content-center align-content-center" style="border-radius: 1rem;">
+                <h4 class="fw-normal mb-0 text-primary">@count</h4>
+            </div>
+        </div>
+        <a asp-action="Create" class="btn btn-primary px-3 py-2" style="height:fit-content;font-size:1.1rem;border-radius:0.5rem;">Create New</a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EmergencyContact)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JobTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PayRate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manager)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmergencyContact)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JobTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PayRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manager.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Emergency Contact</th>
+                    <th>JobTitle</th>
+                    <th>PayRate</th>
+                    <th>EmploymentType</th>
+                    <th>Manager</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmergencyContact)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayRate)
+                        </td>
+						<td>
+                            @(item.EmploymentType != null ? item.EmploymentType : "N/A")
+						</td>
+                        <td>
+                            @(item.Manager != null ? item.Manager.Name : "N/A")
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a> |
+                            <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none">
+                                <i class="bi bi-eye"></i> Details
+                            </a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="text-decoration-none" style="color:#eb1c1c;">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-muted">Hmm ... no results found. Please create a new Employee to get started.</p>
+    }
+</div>

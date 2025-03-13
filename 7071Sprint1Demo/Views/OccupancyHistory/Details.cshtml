@@ -1,31 +1,45 @@
-  @model _7071Sprint1Demo.Models.OccupancyHistory
+@model _7071Sprint1Demo.Models.OccupancyHistory
 
-  @{
-      ViewData["Title"] = "Occupancy History Details";
-  }
+@{
+    ViewData["Title"] = "Occupancy History Details";
+}
 
-  <h1>@ViewData["Title"]</h1>
-
-  <div>
-      <h3>Asset Type:</h3>
-      <p>@Model.Asset?.Type</p>
-  </div>
-  <div>
-      <h3>Renter Name:</h3>
-      <p>@Model.Renter?.Name</p>
-  </div>
-  <div>
-      <h3>Start Date:</h3>
-      <p>@Model.StartDate.ToShortDateString()</p>
-  </div>
-  <div>
-      <h3>End Date:</h3>
-      <p>@Model.EndDate?.ToShortDateString() ?? "N/A"</p>
-  </div>
-  <div>
-      <h3>Duration:</h3>
-      <p>@(Model.EndDate.HasValue ? (Model.EndDate.Value - Model.StartDate).Days.ToString() + " days" : "Ongoing")</p>
-  </div>
-  <div>
-      <a href="@Url.Action("Index", "OccupancyHistory")">Back to List</a>
-  </div>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Occupancy History Details</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Asset.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Asset.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Renter.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Renter.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Start Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.StartDate.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            End Date
+        </dt>
+        <dd class="col-sm-10">
+			@(Model.EndDate != null ? Model.EndDate.Value : "N/A")
+        </dd>
+		<dt class="col-sm-2">
+			Duration
+		</dt>
+        <dd class="col-sm-10">
+			@(Model.EndDate != null ? (Model.EndDate.Value - Model.StartDate).Days.ToString() + " days" : "Ongoing")
+		</dd>
+    </dl>
+</div>

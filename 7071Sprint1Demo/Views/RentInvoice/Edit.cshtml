@@ -4,38 +4,53 @@
     ViewData["Title"] = "Edit Rent Invoice";
 }
 
-<h2>Edit Rent Invoice</h2>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Edit Rent Invoice</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" method="post">
+                <div class="form-group">
+                    <label asp-for="AssetId" class="control-label">Asset Type</label>
+                    <select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetList"></select>
+                    <span asp-validation-for="AssetId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RenterId" class="control-label">Renter Name</label>
+                    <select asp-for="RenterId" class="form-control" asp-items="ViewBag.RenterList"></select>
+                    <span asp-validation-for="RenterId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IssueDate" class="control-label">Issue Date</label>
+                    <input asp-for="IssueDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="IssueDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DueDate" class="control-label">Due Date</label>
+                    <input asp-for="DueDate" class="form-control" type="date" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AmountDue" class="control-label">Amount Due</label>
+                    <input asp-for="AmountDue" class="form-control" />
+                    <span asp-validation-for="AmountDue" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input class="form-check-input" asp-for="IsPaid" id="isPaidCheckbox" />
+                    <label class="form-check-label" for="isPaidCheckbox">Is Paid</label>
+                    <span asp-validation-for="IsPaid" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-<form asp-action="Edit" method="post">
-    <div class="form-group">
-        <label asp-for="AssetId" class="control-label"></label>
-        <select asp-for="AssetId" class="form-control" asp-items="ViewBag.AssetList"></select>
-        <span asp-validation-for="AssetId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="RenterId" class="control-label"></label>
-        <select asp-for="RenterId" class="form-control" asp-items="ViewBag.RenterList"></select>
-        <span asp-validation-for="RenterId" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="IssueDate" class="control-label"></label>
-        <input asp-for="IssueDate" class="form-control" />
-        <span asp-validation-for="IssueDate" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="DueDate" class="control-label"></label>
-        <input asp-for="DueDate" class="form-control" />
-        <span asp-validation-for="DueDate" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AmountDue" class="control-label"></label>
-        <input asp-for="AmountDue" class="form-control" />
-        <span asp-validation-for="AmountDue" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="IsPaid" class="control-label"></label>
-        <input asp-for="IsPaid" type="checkbox" />
-        <span asp-validation-for="IsPaid" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
