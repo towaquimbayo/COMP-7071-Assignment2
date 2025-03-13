@@ -1,0 +1,92 @@
+﻿@model _7071Sprint1Demo.Models.Applicant
+
+@{
+    ViewData["Title"] = "Delete Hiring Applicant";
+}
+
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Delete this Hiring Applicant?</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmergencyContact)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmergencyContact)
+        </dd>
+        <dt class="col-sm-2">
+            Application Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationStatus)
+        </dd>
+        <dt class="col-sm-2">
+            Date Applied
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateApplied)
+        </dd>
+        <dt class="col-sm-2">
+            Applicant Type
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.ApplicantType != null ? Model.ApplicantType : "N/A")
+        </dd>
+        <dt class="col-sm-2">
+            Position Applied For
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PositionAppliedFor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Resume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+        <dt class="col-sm-2">
+            Preferred Unit Type
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.PreferredUnitType != null ? Model.PreferredUnitType : "N/A")
+        </dd>
+        <dt class="col-sm-2">
+            Income Verification
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.IncomeVerification != null ? Model.IncomeVerification : "N/A")
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+    </form>
+</div>

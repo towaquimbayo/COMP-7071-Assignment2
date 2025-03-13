@@ -4,29 +4,42 @@
     ViewData["Title"] = "Rent History Details";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div>
-    <h3>Asset Type:</h3>
-    <p>@Model.Asset?.Type</p>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Rent History Details</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Asset Type
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Asset.Type)
+        </dd>
+		<dt class="col-sm-2">
+			Renter Name
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Renter.Name)
+		</dd>
+        <dt class="col-sm-2">
+			Old Rent Amount
+		</dt>
+		<dd class="col-sm-10">
+			$@Html.DisplayFor(model => model.OldRentAmount)
+		</dd>
+		<dt class="col-sm-2">
+			New Rent Amount
+		</dt>
+		<dd class="col-sm-10">
+			$@Html.DisplayFor(model => model.NewRentAmount)
+            </dd>
+		<dt class="col-sm-2">
+            Effective Date
+		</dt>
+		<dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </dd>
+    </dl>
 </div>
-<div>
-    <h3>Renter Name:</h3>
-    <p>@Model.Renter?.Name</p>
-</div>
-<div>
-    <h3>Old Rent Amount:</h3>
-    <p>@Model.OldRentAmount</p>
-</div>
-<div>
-    <h3>New Rent Amount:</h3>
-    <p>@Model.NewRentAmount</p>
-</div>
-<div>
-    <h3>Effective Date:</h3>
-    <p>@Model.EffectiveDate.ToShortDateString()</p>
-</div>
-<div>
-    <a href="@Url.Action("Index", "RentHistory")">Back to List</a>
-</div>
-

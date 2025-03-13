@@ -1,68 +1,51 @@
 ﻿@model _7071Sprint1Demo.Models.ServiceBooking
 
 @{
-
-    ViewData
-[
-"Title"
-]
- 
-=
- 
-"Create"
-;
-
+    ViewData["Title"] = "Create Service Booking";
 }
 
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Create New Service Booking</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-controller="ServiceBookings" asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<h1>Create</h1>
+                <!-- Important: Add this line for anti-forgery token -->
+                @Html.AntiForgeryToken()
 
-<h4>Service Booking</h4>
-<hr />
-<div class="row">
-    <div class="col-md-6">
-        <form asp-controller="ServiceBookings" asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <!-- Important: Add this line for anti-forgery token -->
-            @Html.AntiForgeryToken()
-            
-            <div class="form-group">
-                <label asp-for="ClientId" class="control-label">ClientId</label>
-                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
-                <span asp-validation-for="ClientId" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ServiceId" class="control-label">ServiceId</label>
-                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
-                <span asp-validation-for="ServiceId" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="ScheduledDate" class="control-label">ScheduledDate</label>
-                <input asp-for="ScheduledDate" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")" />
-                <span asp-validation-for="ScheduledDate" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group" style="margin-top: 20px;">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <label asp-for="ClientId" class="control-label">Client ID</label>
+                    <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                    <span asp-validation-for="ClientId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ServiceId" class="control-label">Service ID</label>
+                    <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+                    <span asp-validation-for="ServiceId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ScheduledDate" class="control-label">Scheduled Date</label>
+                    <input asp-for="ScheduledDate" class="form-control" type="datetime-local" value="@DateTime.Now.ToString("yyyy-MM-dd'T'HH:mm")" />
+                    <span asp-validation-for="ScheduledDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    
-@{
-await
- Html
-.
-RenderPartialAsync
-(
-"_ValidationScriptsPartial"
-)
-;
-}
-
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
