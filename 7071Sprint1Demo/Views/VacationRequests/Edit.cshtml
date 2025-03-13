@@ -1,54 +1,54 @@
 ﻿@model _7071Sprint1Demo.Models.VacationRequest
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Vacation Request";
 }
 
-<h1>Edit</h1>
-
-<h4>VacationRequest</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
-                <span asp-validation-for="EmployeeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="ApprovedByManager" /> @Html.DisplayNameFor(model => model.ApprovedByManager)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovalDate" class="control-label"></label>
-                <input asp-for="ApprovalDate" class="form-control" />
-                <span asp-validation-for="ApprovalDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Edit Vacation Request</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="EmployeeId" class="control-label">Employee ID</label>
+                    <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label">Start Date and Time</label>
+                    <input asp-for="StartDate" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label">End Date and Time</label>
+                    <input asp-for="EndDate" type="datetime-local" class="form-control" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-ddTHH:mm")" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApprovalDate" class="control-label">Approval Date</label>
+                    <input asp-for="ApprovalDate" class="form-control" />
+                    <span asp-validation-for="ApprovalDate" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <input class="form-check-input" asp-for="ApprovedByManager" id="isApprovedByManagerbox" />
+                    <label class="form-check-label" for="isApprovedByManagerbox">Is Approved By Manager</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

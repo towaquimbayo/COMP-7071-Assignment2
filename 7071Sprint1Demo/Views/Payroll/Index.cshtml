@@ -1,71 +1,78 @@
 @model IEnumerable<_7071Sprint1Demo.Models.Payroll>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Payroll";
+    int count = Model.Count();
 }
 
-<h1>Index</h1>
+<div style="margin-top:7rem; min-height:80vh;">
+    <div class="d-flex justify-content-between mb-4">
+        <div class="d-flex gap-3 align-items-center">
+            <h2 class="mb-0">Payroll</h2>
+            <div class="px-4 py-1 bg-primary bg-opacity-10 justify-content-center align-content-center" style="border-radius: 1rem;">
+                <h4 class="fw-normal mb-0 text-primary">@count</h4>
+            </div>
+        </div>
+        <a asp-action="Create" class="btn btn-primary px-3 py-2" style="height:fit-content;font-size:1.1rem;border-radius:0.5rem;">Create New</a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PayDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BasePay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Deductions)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OvertimePay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TaxRate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NetPay)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PayDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BasePay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deductions)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OvertimePay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaxRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NetPay)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @if (Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Pay Date</th>
+                    <th>Base Pay</th>
+                    <th>Deductions</th>
+                    <th>Overtime Pay</th>
+                    <th>Tax Rate</th>
+                    <th>Net Pay</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @(item.Employee != null ? item.Employee.Name : "N/A")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayDate)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.BasePay)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.Deductions)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.OvertimePay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaxRate)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(modelItem => item.NetPay)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none">
+                            <i class="bi bi-eye"></i> Details
+                        </a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="text-decoration-none" style="color:#eb1c1c;">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+	}
+	else
+	{
+        <p class="text-muted">Hmm ... no results found. Please create a new Payroll to get started.</p>
+	}
+</div>

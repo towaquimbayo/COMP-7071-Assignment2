@@ -4,33 +4,48 @@
     ViewData["Title"] = "Rent Invoice Details";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<div>
-    <h3>Asset Type:</h3>
-    <p>@Model.Asset?.Type</p>
-</div>
-<div>
-    <h3>Renter Name:</h3>
-    <p>@Model.Renter?.Name</p>
-</div>
-<div>
-    <h3>Issue Date:</h3>
-    <p>@Model.IssueDate.ToShortDateString()</p>
-</div>
-<div>
-    <h3>Due Date:</h3>
-    <p>@Model.DueDate.ToShortDateString()</p>
-</div>
-<div>
-    <h3>Amount Due:</h3>
-    <p>@Model.AmountDue.ToString("C")</p>
-</div>
-<div>
-    <h3>Is Paid:</h3>
-    <p>@(Model.IsPaid ? "Yes" : "No")</p>
-</div>
-
-<div>
-    <a href="@Url.Action("Index", "RentInvoice")">Back to List</a>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Rent Invoice Details</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Asset Type
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Asset.Type)
+        </dd>
+		<dt class="col-sm-2">
+			Renter Name
+		</dt>
+		<dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Renter.Name)
+        </dd>
+		<dt class="col-sm-2">
+			Issue Date
+		</dt>
+		<dd class="col-sm-10">
+            @Model.IssueDate.ToShortDateString()
+		</dd>
+        <dt class="col-sm-2">
+			Due Date
+		</dt>
+		<dd class="col-sm-10">
+            @Model.DueDate.ToShortDateString()
+		</dd>
+		<dt class="col-sm-2">
+			Amount Due
+		</dt>
+        <dd class="col-sm-10">
+            @Model.AmountDue.ToString("C")
+        </dd>
+		<dt class="col-sm-2">
+            Is Paid
+        </dt>
+		<dd class="col-sm-10">
+            @(Model.IsPaid ? "Yes" : "No")
+		</dd>
+    </dl>
 </div>

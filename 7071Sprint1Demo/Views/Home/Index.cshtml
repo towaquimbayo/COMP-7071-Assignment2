@@ -1,8 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+
+    var cards = new List<dynamic>
+    {
+        new { Title = "Assets", Description = "Manage and track all available assets for efficient organization.", Link = "/Assets/" },
+        new { Title = "Attendances", Description = "Monitor and update employee attendance records with ease.", Link = "/Attendances/" },
+        new { Title = "Clients", Description = "Manage client information and keep track of their service needs.", Link = "/Clients/" },
+        new { Title = "Employees", Description = "Oversee employee details, roles, and employment information.", Link = "/Employees/" },
+        new { Title = "Hiring", Description = "Simplify the hiring process and manage job applications.", Link = "/Hiring/" },
+        new { Title = "Invoices", Description = "Generate and manage invoices for services rendered to clients.", Link = "/Invoices/" },
+        new { Title = "Occupancy History", Description = "Track occupancy history for your assets and maintain records.", Link = "/OccupancyHistory/" },
+        new { Title = "Payroll", Description = "Calculate and manage employee payroll, deductions, and bonuses.", Link = "/Payroll/" },
+        new { Title = "Renters", Description = "Keep track of renters and their occupancy details for each asset.", Link = "/Renters/" },
+        new { Title = "Rent History", Description = "Monitor rent history for each asset and ensure accurate records.", Link = "/RentHistory/" },
+        new { Title = "Rent Invoice", Description = "Generate and manage rent invoices for each tenant.", Link = "/RentInvoice/" },
+        new { Title = "Service Bookings", Description = "Schedule and track service bookings for clients with ease.", Link = "/ServiceBookings/" },
+        new { Title = "Services", Description = "Manage available services and assign them to clients as needed.", Link = "/Services/" },
+        new { Title = "Service Schedule", Description = "Organize and manage service schedules for both clients and employees.", Link = "/ServiceSchedule/" },
+        new { Title = "Shifts", Description = "Assign and manage employee shifts to ensure smooth operations.", Link = "/Shifts/" },
+        new { Title = "Vacation Requests", Description = "Handle employee vacation requests and manage approval processes.", Link = "/VacationRequests/" }
+    };
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center" style="margin-top:7rem;">
+    <div class="container">
+        <h1 class="display-5">Senior Care Management System</h1>
+        <p class="fs-6 mb-5">Efficiently manage human resources, care services, and housing for senior communities with ease. Start your journey by selecting a page to visit below.</p>
+
+        <div class="row">
+            @foreach (var card in cards)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="border-radius: 0.5rem;">
+                        <div class="card-body border-start border-5 text-start" style="border-radius:0.5rem;border-color:#435498!important;">
+                            <h5 class="card-title">@card.Title</h5>
+                            <p class="card-text">@card.Description</p>
+                            <a class="btn btn-primary" href="@card.Link">View Page</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
