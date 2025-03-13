@@ -1,36 +1,33 @@
 ﻿@model _7071Sprint1Demo.Models.Asset
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Asset Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Asset</h4>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Asset Details</h2>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Type)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Type)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RentAmount)
+        <dt class="col-sm-2">
+            Rent Amount
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RentAmount)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsOccupied)
+        <dt class="col-sm-2">
+            Is Occupied
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsOccupied)
+        <dd class="col-sm-10">
+            @(Model.IsOccupied ? "Yes" : "No")
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

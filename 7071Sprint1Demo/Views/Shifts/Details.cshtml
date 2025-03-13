@@ -1,42 +1,39 @@
 ﻿@model _7071Sprint1Demo.Models.Shift
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Shift Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Shift</h4>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Shift Details</h2>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Employee)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShiftStart)
+        <dt class="col-sm-2">
+            Start Date and Time
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ShiftStart)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShiftEnd)
+        <dt class="col-sm-2">
+            End Date and Time
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ShiftEnd)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsRecurring)
+        <dt class="col-sm-2">
+            Is Recurring
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsRecurring)
+        <dd class="col-sm-10">
+            @(Model.IsRecurring ? "Yes" : "No")
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
