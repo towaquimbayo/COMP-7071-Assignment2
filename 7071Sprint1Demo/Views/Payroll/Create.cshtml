@@ -1,59 +1,63 @@
 @model _7071Sprint1Demo.Models.Payroll
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Payroll";
 }
 
-<h1>Create</h1>
-
-<h4>Payroll</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label"></label>
-                <select asp-for="EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PayDate" class="control-label"></label>
-                <input asp-for="PayDate" type="datetime-local" class="form-control" value="@DateTime.Now.AddDays(14).ToString("yyyy-MM-ddTHH:mm")" />
-                <span asp-validation-for="PayDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BasePay" class="control-label"></label>
-                <input asp-for="BasePay" class="form-control" />
-                <span asp-validation-for="BasePay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Deductions" class="control-label"></label>
-                <input asp-for="Deductions" class="form-control" />
-                <span asp-validation-for="Deductions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OvertimePay" class="control-label"></label>
-                <input asp-for="OvertimePay" class="form-control" />
-                <span asp-validation-for="OvertimePay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TaxRate" class="control-label"></label>
-                <input asp-for="TaxRate" class="form-control" />
-                <span asp-validation-for="TaxRate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NetPay" class="control-label"></label>
-                <input asp-for="NetPay" class="form-control" />
-                <span asp-validation-for="NetPay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div style="margin-top:7rem; min-height:80vh;">
+    <a asp-action="Index" class="text-decoration-none" style="color:#3d5cd7;font-weight:500;">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+    <h2 class="mt-2 mb-4">Create New Payroll</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EmployeeId" class="control-label">Employee ID</label>
+                    <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PayDate" class="control-label">Pay Date</label>
+                    <input asp-for="PayDate" type="datetime-local" class="form-control" value="@DateTime.Now.AddDays(14).ToString("yyyy-MM-ddTHH:mm")" />
+                    <span asp-validation-for="PayDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BasePay" class="control-label">Base Pay</label>
+                    <input asp-for="BasePay" class="form-control" />
+                    <span asp-validation-for="BasePay" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Deductions" class="control-label"></label>
+                    <input asp-for="Deductions" class="form-control" />
+                    <span asp-validation-for="Deductions" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OvertimePay" class="control-label">Overtime Pay</label>
+                    <input asp-for="OvertimePay" class="form-control" />
+                    <span asp-validation-for="OvertimePay" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TaxRate" class="control-label">Tax Rate</label>
+                    <input asp-for="TaxRate" class="form-control" />
+                    <span asp-validation-for="TaxRate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NetPay" class="control-label">Net Pay</label>
+                    <input asp-for="NetPay" class="form-control" />
+                    <span asp-validation-for="NetPay" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
