@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7071Sprint1Demo", "7071Sprint1Demo\7071Sprint1Demo.csproj", "{7E249EFF-4C12-4778-BFCE-1685D847B0F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailNotifier", "..\EmailNotifier\EmailNotifier\EmailNotifier.csproj", "{3297A612-302D-4EF3-8506-02DB1D2531B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailNotifier", "EmailNotifier\EmailNotifier\EmailNotifier.csproj", "{3297A612-302D-4EF3-8506-02DB1D2531B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

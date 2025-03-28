@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmailNotifier\EmailNotifier\EmailNotifier.csproj" />
+    <ProjectReference Include="EmailNotifier\EmailNotifier\EmailNotifier.csproj" />
   </ItemGroup>
 
 </Project>
