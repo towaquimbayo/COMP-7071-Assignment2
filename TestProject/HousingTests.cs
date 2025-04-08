@@ -6,10 +6,11 @@ namespace TestProject
     public class HousingTests
     {
         private ChromeDriver driver;
-        private string baseUrl = "https://localhost:44348";
+        private string baseUrl;
         [SetUp]
         public void Setup()
         {
+            baseUrl = Environment.GetEnvironmentVariable("BASEURL") ?? "https://localhost:44348";
             string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             driver = new ChromeDriver(path + @"\drivers\");
             driver.Manage().Window.Maximize();
@@ -26,7 +27,8 @@ namespace TestProject
             // Fill out the form
             driver.FindElement(By.Id("Type")).SendKeys("House");
             driver.FindElement(By.Id("RentAmount")).SendKeys("1000");
-            driver.FindElement(By.Id("IsOccupied")).SendKeys("True");
+            driver.FindElement(By.Id("isOccupiedCheckbox")).Click();
+
 
             // Submit the form
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
@@ -35,7 +37,7 @@ namespace TestProject
             driver.FindElement(By.LinkText("Create New")).Click();
             driver.FindElement(By.Id("Type")).SendKeys("Complex");
             driver.FindElement(By.Id("RentAmount")).SendKeys("2000");
-            driver.FindElement(By.Id("IsOccupied")).SendKeys("False");
+            driver.FindElement(By.Id("isOccupiedCheckbox")).Click();
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();
             driver.Navigate().Refresh();
             Assert.Multiple(() =>
@@ -102,7 +104,7 @@ namespace TestProject
         {
             //Navigate to the RentHistory Page
             driver.Navigate().GoToUrl(baseUrl + "/RentHistory");
-            driver.FindElement(By.LinkText("Create New Rent History")).Click();
+            driver.FindElement(By.LinkText("Create New")).Click();
 
             // Fill out the form
             var assetDropdown = driver.FindElement(By.Id("AssetId"));
@@ -135,7 +137,7 @@ namespace TestProject
             driver.FindElement(By.Id("NewRentAmount")).SendKeys("1300");
 
             // Submit the form
-            driver.FindElement(By.XPath("//button[contains(text(), 'Save')]")).Click();
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
             Assert.IsTrue(driver.PageSource.Contains("1,300.00"));
         }
 
@@ -144,7 +146,7 @@ namespace TestProject
         {
             // Navigate to the RentInvoices page
             driver.Navigate().GoToUrl(baseUrl + "/RentInvoice");
-            driver.FindElement(By.LinkText("Generate New Invoice")).Click();
+            driver.FindElement(By.LinkText("Create New")).Click();
 
             // Fill out the form
             var assetDropdown = driver.FindElement(By.Id("AssetId"));
@@ -197,7 +199,7 @@ namespace TestProject
             selectRenter.SelectByText("Oswald Jenkins");
 
             // Submit the form
-            driver.FindElement(By.XPath("//button[contains(text(), 'Save')]")).Click();
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
             driver.Navigate().Refresh();
 
             Assert.IsTrue(driver.PageSource.Contains("Oswald Jenkins"));
