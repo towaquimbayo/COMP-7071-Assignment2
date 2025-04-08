@@ -1,23 +1,45 @@
-name: Production Build & Deployment
-run-name: ${{ github.actor }} is deploying 🚀
+name: Selenium UI Tests
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size=2g
+
     steps:
-      - name: 📥 Get latest code
-        uses: actions/checkout@v4
-      - name: 🚚 Setup .NET 8
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: "8.0.x"
-      - name: 📦 Restore dependencies
-        run: dotnet restore
-      - name: 🔨 Build .NET
-        run: dotnet build --configuration Release --no-restore
+          dotnet-version: '8.x'
+
+      - name: Restore dependencies
+        run: dotnet restore 7071Sprint1Demo.sln
+
+      - name: Build solution
+        run: dotnet build 7071Sprint1Demo.sln --no-restore --configuration Release
+
+      - name: Start MVC app
+        run: |
+          dotnet publish 7071Sprint1Demo/7071Sprint1Demo.csproj -c Release -o out
+          nohup dotnet out/7071Sprint1Demo.dll --urls=http://localhost:5000 > log.txt 2>&1 &
+          sleep 10 
+
+      - name: Run Selenium tests
+        env:
+          BASEURL: http://localhost:5000
+        run: dotnet test TestProject/TestProject.csproj --no-build --configuration Release

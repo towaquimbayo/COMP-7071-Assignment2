@@ -6,10 +6,11 @@ namespace TestProject
     public class ClientInvoicesTests
     {
         private ChromeDriver driver;
-        private string baseUrl = "https://localhost:44348"; // Change this to your localhost
+        private string baseUrl;
         [SetUp]
         public void Setup()
         {
+            baseUrl = Environment.GetEnvironmentVariable("BASEURL") ?? "https://localhost:44348";
             string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             driver = new ChromeDriver(path + @"\drivers\");
             driver.Manage().Window.Maximize();
@@ -82,7 +83,7 @@ namespace TestProject
             driver.FindElement(By.Id("TotalAmount")).Clear();
             driver.FindElement(By.Id("TotalAmount")).SendKeys("2000");
 
-            driver.FindElement(By.Id("IsPaid")).Click();    
+            driver.FindElement(By.Id("isPaidCheckbox")).Click(); 
 
             // Submit the form
             driver.FindElement(By.XPath("//input[@type='submit']")).Click();

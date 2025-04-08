@@ -7,10 +7,11 @@ namespace TestProject
     public class ServiceTests
     {
         private ChromeDriver driver;
-        private string baseUrl = "https://localhost:44348";
+        private string baseUrl;
         [SetUp]
         public void Setup()
         {
+            baseUrl = Environment.GetEnvironmentVariable("BASEURL") ?? "https://localhost:44348";
             string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             driver = new ChromeDriver(path + @"\drivers\");
             driver.Manage().Window.Maximize();
