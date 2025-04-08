@@ -28,18 +28,30 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore 7071Sprint1Demo.sln
+        run: dotnet restore
 
       - name: Build solution
-        run: dotnet build 7071Sprint1Demo.sln --no-restore --configuration Release
+        run: dotnet build --no-restore --configuration Release
 
-      - name: Start MVC app
+      - name: Publish MVC App
+        run: dotnet publish 7071Sprint1Demo/7071Sprint1Demo.csproj -c Release -o out
+
+      - name: Start MVC App
         run: |
-          dotnet publish 7071Sprint1Demo/7071Sprint1Demo.csproj -c Release -o out
           nohup dotnet out/7071Sprint1Demo.dll --urls=http://localhost:5000 > log.txt 2>&1 &
-          sleep 10 
 
-      - name: Run Selenium tests
+      - name: Wait for server to start
+        run: |
+          for i in {1..20}; do
+            if curl -s http://localhost:5000 | grep -q "<html"; then
+              echo "Server is up!"
+              break
+            fi
+            echo "Waiting for server..."
+            sleep 2
+          done
+
+      - name: Run Selenium Tests
+        run: dotnet test TestProject/TestProject.csproj --no-build --configuration Release
         env:
           BASEURL: http://localhost:5000
-        run: dotnet test TestProject/TestProject.csproj --no-build --configuration Release
