@@ -11,17 +11,11 @@ namespace TestProject
         [SetUp]
         public void Setup()
         {
-            var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--headless"); // Headless mode for CI
-            chromeOptions.AddArgument("--no-sandbox"); // Required in containers
-            chromeOptions.AddArgument("--disable-dev-shm-usage"); // Helps in Linux CI
-
-            driver = new ChromeDriver(chromeOptions); // Uses system-installed chromedriver
-
+            baseUrl = Environment.GetEnvironmentVariable("BASEURL") ?? "http://localhost:5000";
+            string path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            driver = new ChromeDriver(path + @"\drivers\");
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
-            baseUrl = Environment.GetEnvironmentVariable("BASEURL") ?? "http://localhost:5000";
         }
 
 
