@@ -1,5 +1,6 @@
 using _7071Sprint1Demo.Data;
 using Microsoft.EntityFrameworkCore;
+using EmailNotifier;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,10 @@ builder.Services.AddRazorPages(); // Enables Razor Pages if needed
 
 // Add API support (Swagger)
 builder.Services.AddEndpointsApiExplorer();
+
+// Load email settings from configuration and register the EmailNotifier service
+var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>();
+builder.Services.AddEmailNotifier(emailSettings);
 
 var app = builder.Build();
 
