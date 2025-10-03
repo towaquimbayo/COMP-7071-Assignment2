@@ -1,0 +1,27 @@
+﻿@page
+@model _7071Sprint1Demo.Views.OAuth.LoginModel
+@{
+	ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<ul class="navbar-nav">
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <li class="nav-item">
+            <span class="nav-link">Hello, @User.Identity.Name!</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="OAuth" asp-action="Logout">Logout</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link btn btn-primary text-white" asp-controller="OAuth" asp-action="Login">
+                Login with Google
+            </a>
+        </li>
+    }
+</ul>

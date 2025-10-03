@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _7071Sprint1Demo.Data;
 using _7071Sprint1Demo.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace _7071Sprint1Demo.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;

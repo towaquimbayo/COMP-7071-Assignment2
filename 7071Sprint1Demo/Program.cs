@@ -1,8 +1,27 @@
 using _7071Sprint1Demo.Data;
 using Microsoft.EntityFrameworkCore;
 using EmailNotifier;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add authentication with cookie and google auth
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+})
+.AddCookie(options =>
+{
+    options.LoginPath = "/OAuth/Login";
+    options.LogoutPath = "/OAuth/Logout";
+})
+.AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});
 
 // Configure database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -29,6 +48,7 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
